@@ -14,6 +14,12 @@ public class Vicar_Amelia extends CharacterClass {
     }
 
     @Override
+    public void sayPhrase() {
+
+    }
+
+
+    @Override
     public String information() {
         return "In stark contrast with the Beast Patients, people that slowly turn into monsters under layers of bandages, this woman shows perfectly what happens when a human mutates suddenly into a full-fledged Beast: at first Amelia is seen as a normal human woman with tattered white robes, kneeling and reciting a prayer, but after a few instants she changes abruptly.";
     }

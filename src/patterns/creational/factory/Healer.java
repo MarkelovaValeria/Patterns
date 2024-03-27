@@ -1,6 +1,16 @@
 package patterns.creational.factory;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Healer extends CharacterClass {
+    private List<String> phrase = new ArrayList<>();
+
+    public Healer(){
+        this.phrase.add("hphrase1");
+        this.phrase.add("hphrase2");
+        this.phrase.add("hphrase3");
+    }
 
     @Override
     public int hp() {
@@ -13,11 +23,16 @@ public class Healer extends CharacterClass {
     }
 
     @Override
+    public void sayPhrase() {
+        this.bridge.speak(phrase.get((int)Math.floor(Math.random()*phrase.size())));
+    }
+
+    @Override
     public String information() {
-        return "";
+        return null;
     }
     @Override
     public String toString() {
-        return "Hp - " + hp() + "\nDamage - " + damage() + "\nInformation - " + information();
+        return "Hp - " + hp() + "\nDamage - " + damage();
     }
 }

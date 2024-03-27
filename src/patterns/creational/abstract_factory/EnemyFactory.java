@@ -1,14 +1,15 @@
 package patterns.creational.abstract_factory;
 
 import patterns.creational.factory.CharacterClass;
+import patterns.creational.factory.CharacterE;
 
 public class EnemyFactory extends Factory {
-    public CharacterClass getCharacter(String type) {
+    public CharacterClass getCharacter(CharacterE type) {
         switch (type){
-            case "Spider Rom" -> {return new Spider_Rom();}
-            case "Yharnam" -> {return new Yharnam();}
-            case "Vicar Amelia" -> {return new Vicar_Amelia();}
-            case "Moon Presence" -> {return new Moon_Presence();}
+            case SpiderRom -> {return new Spider_Rom();}
+            case Yharnam -> {return new Yharnam();}
+            case VicarAmelia -> {return new Vicar_Amelia();}
+            case MoonPresence -> {return new Moon_Presence();}
             default -> {throw new IllegalArgumentException("Unknown enemy type: " + type);}
         }
     }

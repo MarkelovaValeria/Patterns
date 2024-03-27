@@ -14,6 +14,11 @@ public class Spider_Rom extends CharacterClass {
     }
 
     @Override
+    public void sayPhrase() {
+
+    }
+
+    @Override
     public String information() {
         return "Rom, the Vacuous Spider controls the barrier that prevents normal humans from seeing the true horrors around them, such as the Lesser Amygdalae crawling around Cathedral Ward. Rom was once a scholar of Byrgenwerth who at some point went through metamorphosis into a Kin courtesy of Kos, according to dialogue given by Micolash.Z";
     }
