@@ -23,8 +23,11 @@ import patterns.structural.decorator.Player;
 import patterns.structural.decorator.Shadow_Veil;
 import patterns.structural.decorator.Sword;
 import patterns.structural.facade.Character;
-import patterns.structural.facade.CharacterFacade;
+import patterns.structural.facade.PlayerF;
 import patterns.structural.flyweight.Characteristic;
+import patterns.structural.newBridge.AssassinLvl;
+import patterns.structural.newBridge.CharacterLvl;
+import patterns.structural.newBridge.HealerLvl;
 import patterns.structural.proxy.PlayerProxy;
 import patterns.structural.proxy.ProxyPlayerAction;
 import patterns.structural.flyweight.FactoryF;
@@ -185,17 +188,26 @@ public class Main {
 
                 }
                 case 10 ->{
-                    CharacterFacade characterFacade = new CharacterFacade();
-
-                    characterFacade.createElf("Yukki");
-                    Character elf = characterFacade.getCharacter();
-                    System.out.println(elf);
+                    PlayerF player001 = new PlayerF("Yukki",45);
+                    player001.actionHit();
                 }
                 case 11 -> {
-                    Phrase Ab = new AssassinP();
-                    Phrase Hb = new HealerP();
-                    Phrase Mb = new MageP();
-                    Phrase Pb = new PaladinP();
+                    AssassinLvl assassinLvl = new AssassinLvl();
+                    HealerLvl healerLvl = new HealerLvl();
+                    CharacterLvl characterLvl = new CharacterLvl("Yukki", healerLvl);
+                    characterLvl.lvlUp();
+
+                    CharacterLvl characterLvl2 = new CharacterLvl("Yukki", assassinLvl);
+                    characterLvl2.lvlUp();
+
+
+
+
+
+                    Phrase Ab = new characterP();
+                    Phrase Hb = new characterP();
+                    Phrase Mb = new characterP();
+                    Phrase Pb = new characterP();
 
                     Assassin assassin = new Assassin();
                     assassin.setBridge(Ab);
