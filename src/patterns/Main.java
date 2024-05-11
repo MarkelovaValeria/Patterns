@@ -1,5 +1,10 @@
 package patterns;
 
+import CodeSmells.newLab5.task1.NewUserListProcessor;
+import CodeSmells.newLab5.task1.User;
+import CodeSmells.newLab5.task2.largeClass.*;
+import CodeSmells.newLab5.task2.order.NewOrder;
+import CodeSmells.newLab5.task2.order.ProcessOrder;
 import patterns.behavioral.chainOfResponsibility.Work;
 import patterns.behavioral.command.*;
 import patterns.behavioral.chainOfResponsibility.*;
@@ -89,7 +94,11 @@ public class Main {
                 18. State;
                 19. Strategy;
                 20. Template Method;
-                21. Visitor;""");
+                21. Visitor;
+                
+                Code Smells:
+                22. Lab5;
+                """);
 
             int num = scanner.nextInt();
             if(num==0){
@@ -372,7 +381,7 @@ public class Main {
 
                 }
                 case 17 ->{
-                    Observer observer = new Observer();
+                    CitySubject citySubject = new CitySubject();
                     Ecology ecology = new Ecology();
                     Economy economy = new Economy();
                     City city1 = new City("city1");
@@ -391,10 +400,10 @@ public class Main {
                     city2.addCitizen(citizen22);
                     city2.addCitizen(citizen32);
 
-                    observer.addCity(city1);
-                    observer.addCity(city2);
+                    citySubject.addCity(city1);
+                    citySubject.addCity(city2);
 
-                    observer.updateCity();
+                    citySubject.updateCity();
                 }
                 case 18 ->{
                     State calmState = new CalmState();
@@ -456,6 +465,52 @@ public class Main {
 
 
                     cityVisitor1.accept(magicDoctor);
+                }
+                case 22 ->{
+                    System.out.println("===== User List =====");
+                    User user = new User("Sprigg4n", "?", "?", "?");
+                    User user2 = new User("admin", "?", "?", "?");
+                    ArrayList<User> userList = new ArrayList<>();
+                    userList.add(user);
+                    NewUserListProcessor newUserListProcessor = new NewUserListProcessor(userList);
+                    newUserListProcessor.addUser(user2);
+
+                    newUserListProcessor.sendEmailToUser(user);
+                    newUserListProcessor.processUserList();
+                    newUserListProcessor.adminCount();
+                    System.out.println("===== Order =====");
+
+                    NewOrder aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa = new NewOrder("order1", 22.5);
+                    NewOrder newOrder2 = new NewOrder("order2", 1213.87);
+                    List<NewOrder> newOrderList = new ArrayList<>();
+                    ProcessOrder processOrder = new ProcessOrder(newOrderList, "name1");
+                    processOrder.addOrder(aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa);
+                    processOrder.addOrder(newOrder2);
+                    processOrder.processOrder();
+                    processOrder.totalPrice();
+
+                    System.out.println("===== Large Class =====");
+
+                    Friends friends = new Friends();
+                    friends.addFriend("friend1");
+
+                    Tasks tasks = new Tasks();
+                    tasks.addTask("task1");
+
+                    UserL userL = new UserL("Sprigg4n", 18, "?");
+                    NewLargeClass newLargeClass = new NewLargeClass(userL);
+                    newLargeClass.getEnemies().addEnemy("enemy1");
+                    newLargeClass.getFriends().addFriend("friend1");
+                    newLargeClass.getTasks().addTask("task1");
+                    newLargeClass.getUserL().displayInfo();
+                    newLargeClass.getFriends().displayInfo();
+                    newLargeClass.getTasks().displayInfo();
+                    newLargeClass.getEnemies().displayInfo();
+
+                    newLargeClass.getEnemies().removeEnemy("enemy1");
+                    newLargeClass.getFriends().addFriend("friend2");
+                    newLargeClass.getEnemies().displayInfo();
+                    newLargeClass.getFriends().displayInfo();
                 }
             }
         }
