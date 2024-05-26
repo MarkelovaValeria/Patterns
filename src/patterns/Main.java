@@ -57,6 +57,21 @@ import CodeSmells.newLab6.part3.replaceConditionalWithPolymorphism.Circle2;
 import CodeSmells.newLab6.part3.replaceConditionalWithPolymorphism.Rectangle2;
 import CodeSmells.newLab6.part3.replaceConditionalWithPolymorphism.Shape2;
 import CodeSmells.newLab6.part3.replaceNestedConditionalWithGuardClauses.OrderProcessor2;
+import CodeSmells.newLab6.part4.addParameter.AddParameter;
+import CodeSmells.newLab6.part4.hideMethod.HideMethod;
+import CodeSmells.newLab6.part4.introduceParameterObject.User9;
+import CodeSmells.newLab6.part4.introduceParameterObject.UserManager9;
+import CodeSmells.newLab6.part4.parameterizeMethod.Calculator5;
+import CodeSmells.newLab6.part4.preserveWholeObject.Person7;
+import CodeSmells.newLab6.part4.preserveWholeObject.ProcessPerson;
+import CodeSmells.newLab6.part4.removeParameter.RemoveParameter;
+import CodeSmells.newLab6.part4.removeSettingMethod.Person10;
+import CodeSmells.newLab6.part4.renameMethod.Calculator;
+import CodeSmells.newLab6.part4.replaceConstructorWithFactoryMethod.Car12;
+import CodeSmells.newLab6.part4.replaceParameterWithExplicitMethods.Printer;
+import CodeSmells.newLab6.part4.replaceParameterWithMethodCall.Calculator8;
+import CodeSmells.newLab6.part4.replaceParameterWithMethodCall.Processor8;
+import CodeSmells.newLab6.part4.separateQueryFromModifier.Account4;
 import patterns.behavioral.chainOfResponsibility.Work;
 import patterns.behavioral.command.*;
 import patterns.behavioral.chainOfResponsibility.*;
@@ -863,6 +878,92 @@ public class Main {
                     } catch (IllegalArgumentException e) {
                         System.out.println("Error: " + e.getMessage());
                     }
+
+                    System.out.println("=============================");
+                    System.out.println("Part 4");
+
+                    System.out.println("===== Rename Method =====");
+                    Calculator calculator = new Calculator();
+                    System.out.println("5 + 7 = " + calculator.add(5,7));
+                    System.out.println("12 - 5 = " + calculator.subtraction(12,5));
+
+                    System.out.println("===== Add Parameter =====");
+                    AddParameter calculator2 = new AddParameter();
+
+
+                    System.out.println("Total - " + calculator2.calculateTotale(10,3,0.7));
+
+                    System.out.println("===== Remove Parameter =====");
+                    RemoveParameter removeParameter = new RemoveParameter();
+                    System.out.println("Total - " + removeParameter.calculateTotal(10,5));
+
+                    System.out.println("===== Separate Query from Modifier =====");
+                    Account4 account4 = new Account4();
+                    account4.setBalance(14545);
+                    System.out.println("Balance before commission - " + account4.getBalance());
+
+                    account4.applyCimmission();
+                    System.out.println("Balance after commission - " + account4.getBalance());
+
+                    System.out.println("===== Parameterize Method =====");
+
+                    Calculator5 calculator5 = new Calculator5();
+                    System.out.println("2^2 = " +calculator5.calculatePow(2,2));
+                    System.out.println("2^6 = " + calculator5.calculatePow(2,6));
+
+                    System.out.println("===== Replace Parameter with Explicit Methods =====");
+                    Printer printer = new Printer();
+                    printer.printTextDocument("This is a text document");
+                    printer.printImageDocument("This is an image document");
+
+                    System.out.println("===== Preserve Whole Object =====");
+                    Person7 person7 = new Person7("name1", 25, "address1");
+                    ProcessPerson processPerson = new ProcessPerson();
+
+                    processPerson.process(person7);
+
+                    System.out.println("===== Replace Parameter with Method Call =====");
+                    Calculator8 calculator8 = new Calculator8();
+                    Processor8 processor8 = new Processor8(calculator8);
+
+                    System.out.println("Result - " + processor8.process(10,20));
+
+                    System.out.println("===== Introduce Parameter Object =====");
+                    User9 user9 = new User9("name1", 24, "email1");
+                    UserManager9 userManager9 = new UserManager9();
+                    userManager9.createUser(user9);
+
+                    System.out.println("===== Remove Setting Method =====");
+                    Person10 person10 = new Person10("name1", 18);
+                    System.out.println("Name - " + person10.getName() + ", Age - " + person10.getAge());
+
+                    System.out.println("===== Hide Method =====");
+                    HideMethod hideMethod = new HideMethod();
+                    hideMethod.publicMethod();
+
+                    System.out.println("===== Replace Constructor with Factory Method =====");
+                    Car12 car121 = Car12.createCar("brand1", "model1", 1995, "Black");
+                    Car12 car122 = new Car12("brand2", "model2", 1918, "White");
+
+
+                    System.out.println("Car1 - " + car121.getBrand() +", " + car121.getModel() + ", " + car121.getYear() + ", " + car121.getColor());
+                    System.out.println("Car2 - " + car122.getBrand() +", " + car122.getModel() + ", " + car122.getYear() + ", " + car122.getColor());
+
+                    System.out.println("===== Replace Error Code with Exception =====");
+                    try{
+                        int result = divide(10,0);
+                        System.out.println("Результат ділення: " + result);
+                    }catch (IllegalArgumentException e){
+                        System.out.println("Помилка: " + e.getMessage());
+                    }
+
+                    System.out.println("===== Replace Exception with Test =====");
+                    Double celsius = convertToCelsius(-500);
+                    if(celsius != null){
+                        System.out.println("Температура в градусах Цельсія: " + celsius);
+                    }else{
+                        System.out.println("Помилка: Неприпустима температура");
+                    }
                 }
             }
         }
@@ -877,5 +978,20 @@ public class Main {
             sum += number;
         }
         return (double) sum / numbers.length;
+    }
+
+    public static int divide(int dividend, int divisor){
+        if(divisor == 0){
+            throw new IllegalArgumentException("Ділення на нуль");
+        }
+        return dividend/divisor;
+    }
+
+    public static Double convertToCelsius(double fahrenheit){
+        if(fahrenheit < -459.67){
+            System.out.println("Неприпустима температура: менше абсолютного нуля");
+            return null;
+        }
+        return (fahrenheit - 32)*5/9;
     }
 }
