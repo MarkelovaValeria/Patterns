@@ -1,29 +1,25 @@
 package CodeSmells.newLab5.task2.order;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProcessOrder {
-    private String customerName;
     private List<NewOrder> newOrderList;
     private PriceCalculator priceCalculator;
-    public ProcessOrder(List<NewOrder> newOrderList, String customerName){
-        this.customerName = customerName;
-        this.newOrderList = newOrderList;
-        priceCalculator = new PriceCalculator();
+    public ProcessOrder(){
+        this.priceCalculator = new PriceCalculator();
+        this.newOrderList = new ArrayList<>();
     }
 
     public void processOrder(){
-        for (NewOrder neworder:newOrderList){
-            System.out.println("Order - " + neworder.getName()+"\nPrice - " + neworder.getPrice()+ "\nCustomer name - " + customerName);
+        for(NewOrder order: newOrderList){
+            System.out.println(order.getCustomerName()+" make an order"+"\nTOTAL PRICE - " + priceCalculator.calculateTotalPrice(order.getNewItemList()));
         }
     }
 
     public void addOrder(NewOrder newOrder){
         newOrderList.add(newOrder);
-        System.out.println("+order" + newOrder.getName());
+        System.out.println("+order " + newOrder.getCustomerName());
     }
 
-    public void totalPrice(){
-        System.out.println("TOTAL PRICE - " + priceCalculator.calculateTotalPrice(newOrderList));
-    }
 }

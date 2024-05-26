@@ -1,19 +1,32 @@
 package CodeSmells.newLab5.task2.order;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class NewOrder {
-    private String name;
-    private double price;
+    private String customerName;
+    private List<NewItem> newItemList;
 
-    public NewOrder(String name, double price) {
-        this.name = name;
-        this.price = price;
+    public NewOrder(String customerName){
+        this.customerName = customerName;
+        this.newItemList = new ArrayList<>();
     }
 
-    public String getName() {
-        return name;
+    public void addItem(NewItem newItem){
+        newItemList.add(newItem);
+        System.out.println("+item");
+    }
+    public void removeItem(NewItem newItem){
+        newItemList.remove(newItem);
+        System.out.println("-item");
     }
 
-    public double getPrice() {
-        return price;
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public List<NewItem> getNewItemList() {
+        return newItemList;
     }
 }
