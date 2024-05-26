@@ -1,14 +1,16 @@
-package patterns.behavioral.observer;
+package patterns.behavioral.observer1;
 
-public class Ecology {
+public class Ecology1 {
     private int airPollutionLevel;
     private int waterPollutionLevel;
     private int greenZones;
+    private final int ecology;
 
-    public Ecology(){
+    public Ecology1(){
         this.airPollutionLevel = 0;
         this.waterPollutionLevel = 0;
         this.greenZones = 50;
+        this.ecology = 50;
     }
 
     public int getAirPollutionLevel() {
@@ -46,4 +48,7 @@ public class Ecology {
         System.out.println("\nairPollutionLevel - " + airPollutionLevel + "\nwaterPollutionLevel - " + waterPollutionLevel + "\ngreenZones - " + greenZones);
     }
 
+    public int getEcology() {
+        return ecology;
+    }
 }
