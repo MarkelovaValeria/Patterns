@@ -3,8 +3,48 @@ package patterns;
 import CodeSmells.newLab5.task1.NewUserListProcessor;
 import CodeSmells.newLab5.task1.User;
 import CodeSmells.newLab5.task2.largeClass.*;
+import CodeSmells.newLab5.task2.order.NewItem;
 import CodeSmells.newLab5.task2.order.NewOrder;
 import CodeSmells.newLab5.task2.order.ProcessOrder;
+import CodeSmells.newLab6.part1.extractClass.Employee3;
+import CodeSmells.newLab6.part1.extractClass.EmployeeInfo;
+import CodeSmells.newLab6.part1.hideDelegate.Department;
+import CodeSmells.newLab6.part1.hideDelegate.Employee5;
+import CodeSmells.newLab6.part1.inlineClass.Person;
+import CodeSmells.newLab6.part1.introduceForeignMethod.Client;
+import CodeSmells.newLab6.part1.introduceLocalExtension.DateHelper;
+import CodeSmells.newLab6.part1.introduceLocalExtension.DateHelperExtended;
+import CodeSmells.newLab6.part1.moveField.Company;
+import CodeSmells.newLab6.part1.moveField.Employee;
+import CodeSmells.newLab6.part1.moveMethod.Account;
+import CodeSmells.newLab6.part1.moveMethod.Bank;
+import CodeSmells.newLab6.part1.removeMiddleMan.Department6;
+import CodeSmells.newLab6.part1.removeMiddleMan.Employee6;
+import CodeSmells.newLab6.part2.changeBidirectionalAssociationToUnidirectional.Department2;
+import CodeSmells.newLab6.part2.changeBidirectionalAssociationToUnidirectional.Employee8;
+import CodeSmells.newLab6.part2.changeReferenceToValue.ImmutablePoint;
+import CodeSmells.newLab6.part2.changeUnidirectionalAssociationToBidirectional.Course;
+import CodeSmells.newLab6.part2.changeUnidirectionalAssociationToBidirectional.Student;
+import CodeSmells.newLab6.part2.changeValueToReference.Product;
+import CodeSmells.newLab6.part2.duplicateObservedData.Order3;
+import CodeSmells.newLab6.part2.duplicateObservedData.OrderManager;
+import CodeSmells.newLab6.part2.encapsulateCollection.Book;
+import CodeSmells.newLab6.part2.encapsulateCollection.Library;
+import CodeSmells.newLab6.part2.encapsulateField.Person3;
+import CodeSmells.newLab6.part2.replaceArrayWithObject.Car;
+import CodeSmells.newLab6.part2.replaceArrayWithObject.CarData;
+import CodeSmells.newLab6.part2.replaceDataValueWithObject.Customer;
+import CodeSmells.newLab6.part2.replaceDataValueWithObject.Order2;
+import CodeSmells.newLab6.part2.replaceSubclassWithFields.Circle;
+import CodeSmells.newLab6.part2.replaceSubclassWithFields.Rectangle;
+import CodeSmells.newLab6.part2.replaceTypeCodeWithClass.Product4;
+import CodeSmells.newLab6.part2.replaceTypeCodeWithClass.ProductType;
+import CodeSmells.newLab6.part2.replaceTypeCodeWithState_Strategy.CompletedOrderStatus;
+import CodeSmells.newLab6.part2.replaceTypeCodeWithState_Strategy.Order5;
+import CodeSmells.newLab6.part2.replaceTypeCodeWithSubclasses.Product5;
+import CodeSmells.newLab6.part2.replaceTypeCodeWithSubclasses.ProductType1;
+import CodeSmells.newLab6.part2.replaceTypeCodeWithSubclasses.ProductType2;
+import CodeSmells.newLab6.part2.selfEncapsulateField.EmployeeS;
 import patterns.behavioral.chainOfResponsibility.Work;
 import patterns.behavioral.command.*;
 import patterns.behavioral.chainOfResponsibility.*;
@@ -13,7 +53,7 @@ import patterns.behavioral.iterator.PlayerGroup;
 import patterns.behavioral.iterator.PlayerIt;
 import patterns.behavioral.mediator.*;
 import patterns.behavioral.memento.*;
-import patterns.behavioral.observer.*;
+import patterns.behavioral.observer1.*;
 import patterns.behavioral.state.CalmState;
 import patterns.behavioral.state.Mage1;
 import patterns.behavioral.state.ScaredState;
@@ -58,11 +98,10 @@ import patterns.structural.proxy.PlayerProxy;
 import patterns.structural.proxy.ProxyPlayerAction;
 import patterns.structural.flyweight.FactoryF;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
+
     public static void main(String[] args){
         Scanner scanner = new Scanner(System.in);
         while(true) {
@@ -98,6 +137,7 @@ public class Main {
                 
                 Code Smells:
                 22. Lab5;
+                23. Lab6;
                 """);
 
             int num = scanner.nextInt();
@@ -381,29 +421,20 @@ public class Main {
 
                 }
                 case 17 ->{
-                    CitySubject citySubject = new CitySubject();
-                    Ecology ecology = new Ecology();
-                    Economy economy = new Economy();
-                    City city1 = new City("city1");
-                    Citizen citizen11 = new Citizen("citizen11", 3500, patterns.behavioral.observer.Work.gardener);
-                    Citizen citizen21 = new Citizen("citizen21", 250, patterns.behavioral.observer.Work.unemployment);
-                    Citizen citizen31 = new Citizen("citizen31", 350, patterns.behavioral.observer.Work.crafter);
-                    city1.addCitizen(citizen11);
-                    city1.addCitizen(citizen21);
-                    city1.addCitizen(citizen31);
+                    City1 city = new City1("City");
+                    CitySubject1 citySubject1 = new CitySubject1();
 
-                    City city2 = new City("city2");
-                    Citizen citizen12 = new Citizen("citizen12", 345, patterns.behavioral.observer.Work.chef);
-                    Citizen citizen22 = new Citizen("citizen22", 500, patterns.behavioral.observer.Work.crafter);
-                    Citizen citizen32 = new Citizen("citizen32", 244, patterns.behavioral.observer.Work.gardener);
-                    city2.addCitizen(citizen12);
-                    city2.addCitizen(citizen22);
-                    city2.addCitizen(citizen32);
+                    Citizen1 citizenObserver1 = new Citizen1("name1", 100, Work1.farmer);
+                    Citizen1 citizenObserver2 = new Citizen1("name2", 100, Work1.gardener);
+                    Citizen1 citizenObserver3 = new Citizen1("name3", 100, Work1.crafter);
 
-                    citySubject.addCity(city1);
-                    citySubject.addCity(city2);
+                    city.addCitizen(citizenObserver1);
+                    city.addCitizen(citizenObserver2);
+                    city.addCitizen(citizenObserver3);
 
-                    citySubject.updateCity();
+                    citySubject1.addCity(city);
+                    citySubject1.updateCity();
+
                 }
                 case 18 ->{
                     State calmState = new CalmState();
@@ -478,16 +509,19 @@ public class Main {
                     newUserListProcessor.sendEmailToUser(user);
                     newUserListProcessor.processUserList();
                     newUserListProcessor.adminCount();
+
                     System.out.println("===== Order =====");
 
-                    NewOrder aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa = new NewOrder("order1", 22.5);
-                    NewOrder newOrder2 = new NewOrder("order2", 1213.87);
-                    List<NewOrder> newOrderList = new ArrayList<>();
-                    ProcessOrder processOrder = new ProcessOrder(newOrderList, "name1");
-                    processOrder.addOrder(aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa);
-                    processOrder.addOrder(newOrder2);
+                    NewItem item1 = new NewItem("item1", 22.5);
+                    NewItem item2 = new NewItem("item2", 1213.87);
+
+                    NewOrder newOrder1 = new NewOrder("Sprigg4n");
+                    newOrder1.addItem(item1);
+                    newOrder1.addItem(item2);
+
+                    ProcessOrder processOrder = new ProcessOrder();
+                    processOrder.addOrder(newOrder1);
                     processOrder.processOrder();
-                    processOrder.totalPrice();
 
                     System.out.println("===== Large Class =====");
 
@@ -498,19 +532,250 @@ public class Main {
                     tasks.addTask("task1");
 
                     UserL userL = new UserL("Sprigg4n", 18, "?");
-                    NewLargeClass newLargeClass = new NewLargeClass(userL);
-                    newLargeClass.getEnemies().addEnemy("enemy1");
-                    newLargeClass.getFriends().addFriend("friend1");
-                    newLargeClass.getTasks().addTask("task1");
-                    newLargeClass.getUserL().displayInfo();
-                    newLargeClass.getFriends().displayInfo();
-                    newLargeClass.getTasks().displayInfo();
-                    newLargeClass.getEnemies().displayInfo();
+                    userL.getEnemies().addEnemy("enemy1");
+                    userL.getFriends().addFriend("friend1");
+                    userL.getTasks().addTask("task1");
+                    userL.displayInfo();
+                    userL.getFriends().displayInfo();
+                    userL.getTasks().displayInfo();
+                    userL.getEnemies().displayInfo();
 
-                    newLargeClass.getEnemies().removeEnemy("enemy1");
-                    newLargeClass.getFriends().addFriend("friend2");
-                    newLargeClass.getEnemies().displayInfo();
-                    newLargeClass.getFriends().displayInfo();
+                    userL.getEnemies().removeEnemy("enemy1");
+                    userL.getFriends().addFriend("friend2");
+                    userL.getEnemies().displayInfo();
+                    userL.getFriends().displayInfo();
+                }
+                case 23->{
+                    System.out.println("===== Move Method =====");
+                    Account account1 = new Account(1000, 5.0);
+                    Account account2 = new Account(2000, 3.5);
+                    Account account3 = new Account(1500, 4.0);
+
+                    List<Account> accounts = new ArrayList<>();
+                    accounts.add(account1);
+                    accounts.add(account2);
+                    accounts.add(account3);
+
+                    Bank bank = new Bank(accounts);
+
+                    bank.processAccounts();
+                    System.out.println("===== Move Field =====");
+                    Company company = new Company();
+                    Employee emp1 = new Employee("Yukki");
+                    Employee emp2 = new Employee("Sprigg4n");
+
+                    company.addEmployee(emp1, 50000);
+                    company.addEmployee(emp2, 60000);
+
+                    company.printEmployeeSalaries();
+                    System.out.println("===== Extract Class =====");
+
+                    Employee3 employee3 = new Employee3("Name1", "Engineering",75000);
+                    EmployeeInfo info = new EmployeeInfo(employee3);
+                    info.printEmployeeDetails();
+
+                    System.out.println("===== Inline Class =====");
+                    Person person = new Person("Yukki", "street1", "city", "country");
+                    person.personInfo();
+
+                    System.out.println("===== Hide Delegate =====");
+                    Employee5 manager = new Employee5("name1", null);
+                    Department department = new Department("Engineering", manager);
+                    Employee5 employee5 = new Employee5("name2", department);
+
+                    System.out.println("Manager's name: "+ employee5.getManagerName());
+
+                    System.out.println("===== Remove Middle Man =====");
+                    Employee6 manager6 = new Employee6("name1", null);
+                    Department6 department6 = new Department6("Engineering", manager6);
+                    Employee6 employee6 = new Employee6("name2", department6);
+
+                    System.out.println("Manager's name: "+ employee6.getDepartment().getManagerName());
+
+                    System.out.println("===== Introduce Foreign Method =====");
+                    Client client = new Client();
+                    client.doSomething();
+
+                    System.out.println("===== Introduce Local Extension =====");
+                    Calendar calendar = Calendar.getInstance();
+                    Date startDate = calendar.getTime();
+                    calendar.add(Calendar.DAY_OF_MONTH, 10);
+                    Date endDate = calendar.getTime();
+
+                    Date newDate = DateHelper.addDays(startDate, 5);
+                    System.out.println("Date after adding 5 days: " + newDate);
+
+                    long daysDiff = DateHelperExtended.daysBetween(startDate, endDate);
+                    System.out.println("Days between startDate and endDate: " + daysDiff);
+
+                    System.out.println("=============================");
+                    System.out.println("Part 2");
+                    System.out.println("===== Self Encapsulate Field ======");
+
+                    EmployeeS employeeS = new EmployeeS("name4", 17000);
+                    System.out.println("Salary: " + employeeS.getSalary());
+
+                    employeeS.raiseSalary(3000);
+                    System.out.println("Salary: "+ employeeS.getSalary());
+
+                    System.out.println("===== Replace Data Value with Object =====");
+
+                    Customer customer = new Customer("customer1");
+
+                    Order2 order2 = new Order2(customer, 250);
+
+                    System.out.println("Customer: " + order2.getCustomer().getName());
+                    System.out.println("Amount: "+ order2.getAmount());
+
+                    order2.getCustomer().setName("newName");
+                    System.out.println("Customer: " + order2.getCustomer().getName());
+
+                    System.out.println("===== Change Value to Reference =====");
+                    Product product1 = new Product("name1", 25, "USD");
+                    Product product2 = new Product("name2", 25, "USD");
+                    Product product3 = new Product("name3", 65, "USD");
+
+                    System.out.println("Currency of product1: " + product1.getCurrency());
+                    System.out.println("Currency of product2: " + product2.getCurrency());
+                    System.out.println("Currency of product3: " + product3.getCurrency());
+
+                    System.out.println("product1 and product2 have the same currency object: " + (product1.getCurrency() == product2.getCurrency()));
+
+                    System.out.println("===== Change Reference to Value =====");
+                    ImmutablePoint point1 = new ImmutablePoint(1, 2);
+                    ImmutablePoint point2 = new ImmutablePoint(1, 2);
+                    ImmutablePoint point3 = new ImmutablePoint(3, 4);
+
+                    System.out.println("Point 1: " + point1);
+                    System.out.println("Point 2: " + point2);
+                    System.out.println("Point 3: " + point3);
+
+                    System.out.println("Point 1 equals Point 2: " + point1.equals(point2));
+                    System.out.println("Point 1 equals Point 3: " + point1.equals(point3));
+
+                    System.out.println("===== Replace Array with Object =====");
+                    List<Car> cars = new ArrayList<>();
+                    cars.add(new Car("Toyota", 20000, 2018));
+                    cars.add(new Car("BMW", 40000, 2020));
+                    cars.add(new Car("Honda", 25000, 2019));
+
+                    CarData carData = new CarData(cars);
+
+                    System.out.println("===== Duplicate Observes Data =====");
+                    OrderManager orderManager = new OrderManager();
+
+                    Order3 order31 = new Order3("name1", "name2", 1);
+                    Order3 order32 = new Order3("name4", "name5", 3);
+
+                    orderManager.addOrder(order31);
+                    orderManager.addOrder(order32);
+
+                    for (Order3 order3: orderManager.getOrders()){
+                        System.out.println("Customer: " + order3.getCustomerName() + ", Product: " + order3.getProductName() + ", Quantity: " + order3.getQuantity());
+                    }
+
+                    System.out.println("===== Change Unidirectional Association to Bidirectional =====");
+                    Student student1 = new Student("student1");
+                    Student student2 = new Student("student2");
+
+                    Course course1 = new Course("course1");
+                    Course course2 = new Course("course2");
+
+                    student2.enrollCourse(course1);
+                    student1.enrollCourse(course1);
+                    student1.enrollCourse(course2);
+
+                    System.out.println(student1.getName() + " enrolled in courses:");
+                    for (Course course : student1.getCourses()) {
+                        System.out.println(course.getTitle());
+                    }
+
+                    System.out.println("\nStudents enrolled in the course " + course1.getTitle() + ":");
+                    for (Student student : course1.getStudents()) {
+                        System.out.println(student.getName());
+                    }
+
+                    System.out.println("\nStudents enrolled in the course " + course2.getTitle() + ":");
+                    for (Student student : course2.getStudents()) {
+                        System.out.println(student.getName());
+                    }
+
+                    System.out.println("===== Change Bidirectional Association to Unidirectional =====");
+                    Employee8 employee81 = new Employee8("employee1");
+                    Employee8 employee82 = new Employee8("employee2");
+
+                    List<Employee8> employee8s = new ArrayList<>();
+                    employee8s.add(employee81);
+                    employee8s.add(employee82);
+
+                    Department2 department2 = new Department2("department", employee8s);
+                    for (Employee8 employee8: department2.getEmployees()){
+                        System.out.println(employee8.getName());
+                    }
+
+                    System.out.println("===== Replace Magic Number with Symbolic Constant =====");
+                    final int numberOfItem = 100;
+                    List<String> items = new ArrayList<>();
+
+                    for (int i = 0; i < numberOfItem; i++) {
+                        items.add("Item " + i);
+                    }
+
+                    for (String item : items) {
+                        System.out.println(item);
+                    }
+
+                    System.out.println("===== Encapsulate Field =====");
+
+                    Person3 person3 = new Person3(23);
+                    System.out.println(person3.getAge());
+
+                    System.out.println("===== Encapsulate Collection =====");
+                    Book book1 = new Book("book1");
+                    Book book2 = new Book("book2");
+
+                    List<Book> books = new ArrayList<>();
+                    Library library = new Library(books);
+                    library.addBook(book1);
+                    library.addBook(book2);
+
+                    for(Book book : library.getBooks()){
+                        System.out.println(book.getTitle());
+                    }
+
+                    System.out.println("===== Replace Type Code with Class =====");
+
+                    ProductType type1 = new ProductType(1, "type1");
+                    ProductType type2 = new ProductType(2, "type2");
+
+                    Product4 product41 = new Product4("product1", type1);
+                    Product4 product42 = new Product4("product2", type2);
+
+                    System.out.println("Product 1: " + product41.getName() + ", Type: " + type1.getTypeName());
+                    System.out.println("Product 2: " + product42.getName() + ", Type: " + type2.getTypeName());
+
+                    System.out.println("===== Replace Type Code with Subclasses =====");
+                    Product5 product51 = new ProductType1("Product1");
+                    Product5 product52 = new ProductType2("Product2");
+
+                    product51.process();
+                    product52.process();
+
+                    System.out.println("===== Replace Type Code with State/Strategy =====");
+                    Order5 order5 = new Order5();
+                    order5.processOrder();
+                    order5.processOrder();
+                    order5.setStatus(new CompletedOrderStatus());
+                    order5.processOrder();
+
+                    System.out.println("===== Replace Subclass with Fields =====");
+                    Circle circle = new Circle(2);
+                    System.out.println("Circle area - " + circle.getArea());
+                    System.out.println("Circle perimeter - " + circle.getPerimeter());
+
+                    Rectangle rectangle = new Rectangle(4, 6);
+                    System.out.println("Rectangle area - " + rectangle.getArea());
+                    System.out.println("Rectangle perimeter - " + rectangle.getPerimeter());
                 }
             }
         }
