@@ -45,6 +45,18 @@ import CodeSmells.newLab6.part2.replaceTypeCodeWithSubclasses.Product5;
 import CodeSmells.newLab6.part2.replaceTypeCodeWithSubclasses.ProductType1;
 import CodeSmells.newLab6.part2.replaceTypeCodeWithSubclasses.ProductType2;
 import CodeSmells.newLab6.part2.selfEncapsulateField.EmployeeS;
+import CodeSmells.newLab6.part3.consolidateConditionalExpression.PaymentProcessor;
+import CodeSmells.newLab6.part3.consolidateDuplicateConditionalFragments.OrderProcessor;
+import CodeSmells.newLab6.part3.decomposeConditional.AccessManager;
+import CodeSmells.newLab6.part3.decomposeConditional.Resource;
+import CodeSmells.newLab6.part3.decomposeConditional.User3;
+import CodeSmells.newLab6.part3.introduceNullObject.Address3;
+import CodeSmells.newLab6.part3.introduceNullObject.Customer3;
+import CodeSmells.newLab6.part3.removeControlFlag.ArraySearch;
+import CodeSmells.newLab6.part3.replaceConditionalWithPolymorphism.Circle2;
+import CodeSmells.newLab6.part3.replaceConditionalWithPolymorphism.Rectangle2;
+import CodeSmells.newLab6.part3.replaceConditionalWithPolymorphism.Shape2;
+import CodeSmells.newLab6.part3.replaceNestedConditionalWithGuardClauses.OrderProcessor2;
 import patterns.behavioral.chainOfResponsibility.Work;
 import patterns.behavioral.command.*;
 import patterns.behavioral.chainOfResponsibility.*;
@@ -776,8 +788,94 @@ public class Main {
                     Rectangle rectangle = new Rectangle(4, 6);
                     System.out.println("Rectangle area - " + rectangle.getArea());
                     System.out.println("Rectangle perimeter - " + rectangle.getPerimeter());
+
+
+                    System.out.println("=============================");
+                    System.out.println("Part 3");
+
+                    System.out.println("===== Decompose Conditional =====");
+                    User3 user31 = new User3("user1", true);
+                    Resource resource = new Resource("resource1");
+
+                    AccessManager accessManager = new AccessManager();
+                    accessManager.checkAccess(user31, resource);
+
+                    User3 user32 = new User3("user2", false);
+                    accessManager.checkAccess(user32, resource);
+
+                    accessManager.checkAccess(user31,null);
+
+                    accessManager.checkAccess(null, resource);
+
+                    System.out.println("===== Consolidate Conditional Expression =====");
+                    PaymentProcessor processor = new PaymentProcessor();
+
+                    processor.processPayment(200, true, true);
+                    processor.processPayment(150, true, false);
+                    processor.processPayment(65, false, true);
+                    processor.processPayment(300, false, false);
+
+                    System.out.println("===== Consolidate Duplicate Comditional Fragments =====");
+                    OrderProcessor orderProcessor = new OrderProcessor();
+
+                    orderProcessor.processOrder(30, 10);
+                    orderProcessor.processOrder(1, 300);
+                    orderProcessor.processOrder(0,0);
+
+                    System.out.println("===== Remove Control Flag =====");
+                    ArraySearch arraySearch = new ArraySearch();
+
+                    int[] array1 = {1,2,3,4,5,6,7,8,9,0};
+                    arraySearch.searchElement(array1, 5);
+
+                    int[] array2 = {0,9,3,6,7};
+                    arraySearch.searchElement(array2, 5);
+
+                    System.out.println("===== Replace Nested Conditional with Guard Clauses =====");
+                    OrderProcessor2 processor2 = new OrderProcessor2();
+
+                    processor2.processOrder(-10, 20);
+                    processor2.processOrder(54, -1);
+                    processor2.processOrder(-1, -1);
+                    processor2.processOrder(10, 10);
+
+                    System.out.println("===== Replace Conditional with Polymorphis =====");
+                    Shape2 circle2 = new Circle2(5);
+                    Shape2 rectangle2 = new Rectangle2(4, 6);
+
+                    System.out.println("Circle area - " + circle2.calculateArea());
+                    System.out.println("Rectangle area - " + rectangle2.calculateArea());
+
+                    System.out.println("===== Introduce Null Object =====");
+                    Customer3 customer31 = new Customer3(new Address3("street1", "city1"));
+                    Customer3 customer32 = new Customer3(null);
+
+                    System.out.println("Customer1 - " + customer31.getAddress3().getFullAddress());
+                    System.out.println("Customer2 - " + customer32.getAddress3().getFullAddress());
+
+                    System.out.println("===== Intoduce Assertion =====");
+                    int[] numbers = {1, 2, 3, 4, 5};
+                    int[] emptyArray = {};
+
+                    try {
+                        System.out.println("Average: " + calculateAverage(numbers));
+                        System.out.println("Average: " + calculateAverage(emptyArray));
+                    } catch (IllegalArgumentException e) {
+                        System.out.println("Error: " + e.getMessage());
+                    }
                 }
             }
         }
+    }
+    public static double calculateAverage(int[] numbers) {
+        if (numbers == null || numbers.length == 0) {
+            throw new IllegalArgumentException("Array must not be null or empty");
+        }
+
+        int sum = 0;
+        for (int number : numbers) {
+            sum += number;
+        }
+        return (double) sum / numbers.length;
     }
 }
