@@ -72,6 +72,31 @@ import CodeSmells.newLab6.part4.replaceParameterWithExplicitMethods.Printer;
 import CodeSmells.newLab6.part4.replaceParameterWithMethodCall.Calculator8;
 import CodeSmells.newLab6.part4.replaceParameterWithMethodCall.Processor8;
 import CodeSmells.newLab6.part4.separateQueryFromModifier.Account4;
+import CodeSmells.newLab6.part5.collapseHierarchy.Animal9;
+import CodeSmells.newLab6.part5.extractInterface.Rectangle8;
+import CodeSmells.newLab6.part5.extractInterface.Shape8;
+import CodeSmells.newLab6.part5.extractInterface.Square8;
+import CodeSmells.newLab6.part5.extractSubclass.Employeee;
+import CodeSmells.newLab6.part5.extractSubclass.Manager6;
+import CodeSmells.newLab6.part5.extractSuperclass.Employee7;
+import CodeSmells.newLab6.part5.extractSuperclass.Manager7;
+import CodeSmells.newLab6.part5.formTemplateMethod.CakeRecipe;
+import CodeSmells.newLab6.part5.formTemplateMethod.CookingRecipe;
+import CodeSmells.newLab6.part5.formTemplateMethod.PastaRecipe;
+import CodeSmells.newLab6.part5.pullUpConstructorBody.Cat3;
+import CodeSmells.newLab6.part5.pullUpConstructorBody.Dog3;
+import CodeSmells.newLab6.part5.pullUpField.Car1;
+import CodeSmells.newLab6.part5.pullUpField.Truck;
+import CodeSmells.newLab6.part5.pullUpMethod.Animal2;
+import CodeSmells.newLab6.part5.pullUpMethod.Cat;
+import CodeSmells.newLab6.part5.pullUpMethod.Dog;
+import CodeSmells.newLab6.part5.pushDownField.Car5;
+import CodeSmells.newLab6.part5.pushDownField.Truck5;
+import CodeSmells.newLab6.part5.pushDownMethod.Cat4;
+import CodeSmells.newLab6.part5.replaceDelegationWithInheritance.SecurePrinter12;
+import CodeSmells.newLab6.part5.replaceInheritanceWithDelegation.Animal11;
+import CodeSmells.newLab6.part5.replaceInheritanceWithDelegation.Dog11;
+import CodeSmells.newLab6.part5.replaceInheritanceWithDelegation.Person11;
 import patterns.behavioral.chainOfResponsibility.Work;
 import patterns.behavioral.command.*;
 import patterns.behavioral.chainOfResponsibility.*;
@@ -964,6 +989,87 @@ public class Main {
                     }else{
                         System.out.println("Помилка: Неприпустима температура");
                     }
+                    System.out.println("=============================");
+                    System.out.println("Part 5");
+
+                    System.out.println("===== Pull Up Field =====");
+                    Car1 car1 = new Car1("Black", "model1");
+                    Truck truck = new Truck("Blue", 5000);
+                    System.out.println("Car" + "\nColor: " + car1.getColor()+ "\nModel: " + car1.getModel());
+                    System.out.println("Truck" + "\nColor: " + truck.getColor() + "\nLoad Capacity: " + truck.getLoadCapacity());
+
+                    System.out.println("===== Pull Up Method =====");
+                    Animal2 dog = new Dog();
+                    Animal2 cat = new Cat();
+                    dog.sound();
+                    cat.sound();
+
+                    System.out.println("===== Pull Up Constructor Body =====");
+                    Dog3 dog3 = new Dog3("dog1", 3, "breed1");
+                    Cat3 cat3 = new Cat3("cat1", 5, "Black");
+                    System.out.println("Cat"+ "\nName: " + cat3.getName() + "\nAge: " + cat3.getAge() + "\nColor: " + cat3.getColor());
+                    System.out.println("Dog" + "\nName: " + dog3.getName() + "\nAge: " + dog3.getAge() + "\nBreed: " + dog3.getBreed());
+
+                    System.out.println("===== Push Down Method =====");
+                    Cat4 cat4 = new Cat4();
+                    cat4.makeSound();
+
+                    System.out.println("===== Push Down Field =====");
+                    Car5 car5 = new Car5("brand1");
+                    Truck5 truck5 = new Truck5("model1");
+                    System.out.println("Car1" + "\nBrand: " + car5.getBrand());
+                    System.out.println("Truck1" + "\nModel: " + truck5.getModel());
+
+                    System.out.println("===== Extract Subclass =====");
+                    Employeee employeee = new Employeee("name1", 25000);
+                    Manager6 manager61 = new Manager6("name2", 50000, true);
+
+                    employeee.giveRaise(5000);
+                    manager61.holdMeeting();
+                    System.out.println(employeee.getSalary());
+
+                    System.out.println("===== Extract Superclass =====");
+                    Employee7 employee7 = new Employee7("name1", 12500);
+                    Manager7 manager7 = new Manager7("name2", 45000, "department1");
+
+                    employee7.displayInfo();
+                    manager7.displayInfo();
+
+                    System.out.println("===== Extract Interface =====");
+                    Shape8 rectangle1 = new Rectangle8(4, 5);
+                    Shape8 square = new Square8(2);
+
+                    System.out.println("Rectangle");
+                    System.out.println("Area - " + rectangle1.calculateArea() + ", Perimeter - " + rectangle1.calculatePerimeter());
+
+                    System.out.println("Square");
+                    System.out.println("Area - " + square.calculateArea() + ", Perimeter - " + square.calculatePerimeter());
+
+                    System.out.println("===== Collapse Hierarchy =====");
+                    Animal9 dog1 = new Animal9("Dog");
+
+                    dog1.eat();
+                    dog1.sleep();
+                    dog1.bark();
+
+                    System.out.println("===== Form Template Method =====");
+                    System.out.println("Making Pasta");
+                    CookingRecipe pasta = new PastaRecipe();
+                    pasta.prepareRecipe();
+
+                    System.out.println("Making Cake");
+                    CookingRecipe cake = new CakeRecipe();
+                    cake.prepareRecipe();
+
+                    System.out.println("===== Replace Inheritance with Delegation =====");
+                    Animal11 animal11 = new Animal11();
+                    Dog11 dog11 = new Dog11(animal11);
+                    Person11 person11 = new Person11(dog11);
+                    person11.interactWithDog();
+
+                    System.out.println("===== Replace Delegation with Inheritance =====");
+                    SecurePrinter12 securePrinter12 = new SecurePrinter12();
+                    securePrinter12.printSecurely("Document");
                 }
             }
         }
